@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Detail" representedClassName="Remember.Detail" syncable="YES">
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="spot" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="ofEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="details" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Remember.Event" syncable="YES">
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSpot" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="times" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="details" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Detail" inverseName="ofEvent" inverseEntity="Detail" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Detail" positionX="178" positionY="36" width="128" height="103"/>
+        <element name="Event" positionX="-126" positionY="17" width="128" height="133"/>
+    </elements>
 </model>

@@ -9,18 +9,23 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var tv_details: UITableView!
+    @IBOutlet weak var iv_image: UIImageView!
+    @IBOutlet weak var l_title: UILabel!
+    
+    var event:Event!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let title = self.event.title
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onTouchPlusButton(sender: UIButton) {
     }
-    
+        
 
     /*
     // MARK: - Navigation

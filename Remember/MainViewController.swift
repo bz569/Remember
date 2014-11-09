@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var events:[Event] = []
     let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var indexToBeDeleted = -1
+    var selectedIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.fetchEventsFromDB()
     }
     
-    
+    @IBAction func onTouchAddButton(sender: UIBarButtonItem) {
+        if self.hasAddLine == 0 {
+            self.toAddEvent()
+        }else {
+            self.cancclToAddEvent()
+        }
+    }
+
     //Add a row in table to add event
     func toAddEvent() {
         tv_events.beginUpdates()
@@ -47,8 +55,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if indexPath.row < self.events.count {
             let cell:EventTableViewCell = tv_events.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as EventTableViewCell
-            cell.l_eventName.text = self.events[indexPath.row].title
+            let event:Event = self.events[indexPath.row]
+            cell.l_eventName.text = event.title
             cell.l_info.text = "最后一次 2014-10-10 于XXX"
+            cell.l_times.text = event.times.stringValue
             
             return cell
         }else{
@@ -82,6 +92,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let alert:UIAlertView = UIAlertView(title: "", message: "确定要删除这条记录吗？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
         alert.show()
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        self.selectedIndex = indexPath.row
+        self.performSegueWithIdentifier("segueToDetailView", sender: self.tv_events.cellForRowAtIndexPath(indexPath))
+    }
+    
     
     //alertview Delegate
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
@@ -138,13 +154,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.events = context?.executeFetchRequest(request, error: &error) as [Event]
     }
     
-    @IBAction func onTouchAddButton(sender: UIBarButtonItem) {
-        if self.hasAddLine == 0 {
-            self.toAddEvent()
-        }else {
-            self.cancclToAddEvent()
-        }
-    }
     
     //insert data in core data
     func insertEvent(title:String) {
@@ -153,6 +162,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         event.title = title
         event.times = 0
         var error:NSError? = nil
+        
         context?.save(&error)
     }
     
@@ -164,7 +174,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         context?.save(&error)
     }
 
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "segueToDetailView" {
+            let destinationVC:DetailViewController = segue.destinationViewController as DetailViewController
+            let cell:EventTableViewCell = sender as EventTableViewCell
+            let indexPath:NSIndexPath! = self.tv_events.indexPathForCell(cell) as NSIndexPath!
+            
+            destinationVC.setValue(self.events[indexPath.row], forKey:"event")
+        }
+    }
     
 
 

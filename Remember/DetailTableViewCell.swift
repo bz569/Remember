@@ -19,6 +19,9 @@ class DetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.v_iconBackground.layer.masksToBounds = true
+        self.v_iconBackground.layer.cornerRadius = 20
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

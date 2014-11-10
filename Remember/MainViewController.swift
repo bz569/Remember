@@ -29,6 +29,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.fetchEventsFromDB()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fetchEventsFromDB()
+        self.tv_events.reloadData()
+    }
+    
     @IBAction func onTouchAddButton(sender: UIBarButtonItem) {
         if self.hasAddLine == 0 {
             self.toAddEvent()
@@ -57,8 +63,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell:EventTableViewCell = tv_events.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as EventTableViewCell
             let event:Event = self.events[indexPath.row]
             cell.l_eventName.text = event.title
-            cell.l_info.text = "最后一次 2014-10-10 于XXX"
-            cell.l_times.text = event.times.stringValue
+            
+            let test:NSDate? = event.lastTime as NSDate?
+            
+            if test != nil   {
+                let lastTimeStr:String = DateUtil.getDateStringFromNSDate2(event.lastTime)
+                let lastSpotStr:String = event.lastSpot
+                cell.l_info.text = "最后一次 " + lastTimeStr + " 于" + lastSpotStr
+            }else{
+                cell.l_info.text = ""
+            }
+            cell.l_times.text = String(event.details.count)
             
             return cell
         }else{
@@ -96,6 +111,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        self.selectedIndex = indexPath.row
         self.performSegueWithIdentifier("segueToDetailView", sender: self.tv_events.cellForRowAtIndexPath(indexPath))
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
     }
     
     
@@ -152,6 +168,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         var request:NSFetchRequest = NSFetchRequest(entityName: "Event")
         var error:NSError? = nil
         self.events = context?.executeFetchRequest(request, error: &error) as [Event]
+        self.events.sort { (e1:Event, e2:Event) -> Bool in
+            return e1.lastTime.compare(e2.lastTime) == NSComparisonResult.OrderedDescending
+        }
     }
     
     

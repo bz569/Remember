@@ -75,6 +75,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             cell.l_times.text = String(event.details.count)
             
+            //image of event
+            let documentPath:NSString = NSHomeDirectory().stringByAppendingPathComponent("Documents")
+            let imagePath:NSString = documentPath + "/images/" + event.title + ".png"
+            
+            var image:UIImage = UIImage()
+            if NSFileManager.defaultManager().fileExistsAtPath(imagePath) {
+                image = UIImage(contentsOfFile: imagePath)!
+            }else {
+                image = UIImage(named: "colorful-triangles-background")!
+            }
+            cell.iv_icon.image = image
+
+            
             return cell
         }else{
             let cell:AddEventTableViewCell = tv_events.dequeueReusableCellWithIdentifier("addEventCell", forIndexPath: indexPath) as AddEventTableViewCell
@@ -203,7 +216,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-
+    //TODO:没有数据时，提示用户点击加号新建
 
 }
 

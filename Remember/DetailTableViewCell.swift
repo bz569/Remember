@@ -22,6 +22,8 @@ class DetailTableViewCell: UITableViewCell {
         
         self.v_iconBackground.layer.masksToBounds = true
         self.v_iconBackground.layer.cornerRadius = 20
+        
+        self.userInteractionEnabled = false
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

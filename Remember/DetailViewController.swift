@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 import CoreData
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var tv_details: UITableView!
     @IBOutlet weak var iv_image: UIImageView!
     @IBOutlet weak var l_title: UILabel!
+    @IBOutlet weak var l_hintToChangImg: UILabel!
     
     var event:Event!
     var locationManager:CLLocationManager!
@@ -24,6 +25,13 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        if self.iv_image.image == UIImage(named: "colorful-triangles-background") {
+            self.l_hintToChangImg.hidden = false
+        }else {
+            self.l_hintToChangImg.hidden = true
+        }
+        
         
         //fetch details
         self.fetchDetails()
@@ -42,7 +50,18 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         self.tv_details.delegate = self
         self.tv_details.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        //set imageView
+        self.showImage()
         
+        //set imageview tap
+        let singleTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("changeImage"))
+        singleTap.numberOfTapsRequired = 1
+        self.iv_image.addGestureRecognizer(singleTap)
+        
+        //set title
+        self.l_title.text = self.event.title
+        
+                
     }
 
     @IBAction func onTouchPlusButton(sender: UIButton) {
@@ -80,7 +99,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         context?.save(&error)
         
-        //TODO: 添加行的动画
         self.tv_details.beginUpdates()
         let rowToAdd:[NSIndexPath] = [NSIndexPath(forRow: 0, inSection: 0)]
         self.tv_details.insertRowsAtIndexPaths(rowToAdd, withRowAnimation: UITableViewRowAnimation.Top)
@@ -128,6 +146,100 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         })
     }
     
+    
+    //TODO:自定义封面图片
+    // show the image
+    func showImage() {
+        let documentPath:NSString = NSHomeDirectory().stringByAppendingPathComponent("Documents")
+        let imagePath:NSString = documentPath + "/images/" + self.event.title + ".png"
+        
+        var image:UIImage = UIImage()
+        if NSFileManager.defaultManager().fileExistsAtPath(imagePath) {
+            image = UIImage(contentsOfFile: imagePath)!
+            self.l_hintToChangImg.hidden = true
+        }else {
+            image = UIImage(named: "colorful-triangles-background")!
+        }
+        self.iv_image.image = image
+    }
+    
+    
+    func changeImage(){
+        let as_selectIamge:UIActionSheet = UIActionSheet(title: "更换背景图片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "从手机相册选择")
+        
+        as_selectIamge.showInView(self.view)
+    }
+    
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 {
+            self.takePhoto()
+        }else if buttonIndex == 2{
+            self.pickImageFormPhotoLibrary()
+        }
+    }
+    
+    func takePhoto() {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            
+            let imagePicker:UIImagePickerController = UIImagePickerController()
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+            
+            
+            
+        }else {
+            println("camera error")
+        }
+        
+    }
+    
+    func pickImageFormPhotoLibrary() {
+        let imagePicker:UIImagePickerController = UIImagePickerController()
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    //After picking or shooting a picture
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        let type:NSString = info[UIImagePickerControllerMediaType] as NSString
+
+        if type == "public.image" {
+            //convert image to NSData
+            let image:UIImage = info[UIImagePickerControllerEditedImage] as UIImage
+            var imageData:NSData = NSData()
+            if UIImagePNGRepresentation(image) == nil {
+                imageData = UIImageJPEGRepresentation(image, 1.0)
+            }else{
+                imageData = UIImagePNGRepresentation(image)
+            }
+            
+            //save image in documents/images folder
+            let docuPath:NSString = NSHomeDirectory().stringByAppendingPathComponent("Documents")
+            let imageFolderPath = docuPath + "/images"
+            let fileManager:NSFileManager = NSFileManager.defaultManager()
+            fileManager.createDirectoryAtPath(imageFolderPath, withIntermediateDirectories: true, attributes: nil, error: nil)
+            let imageName:NSString = self.event.title + ".png"
+            let imagePath:NSString = imageFolderPath + "/" + imageName
+            fileManager.createFileAtPath(imagePath, contents: imageData, attributes: nil)
+            
+            //show the image
+            self.showImage()
+            
+        }
+    }
+    
+    //TODO:没有数据是，提示用户点击加号按钮
+
     
 }
 

@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreData
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate{
     
     @IBOutlet weak var tv_details: UITableView!
     @IBOutlet weak var iv_image: UIImageView!
@@ -66,15 +66,20 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
 
     @IBAction func onTouchPlusButton(sender: UIButton) {
         
-        //TODO:定位不可用时，提示手动输入地点
         
-        let location:CLLocation = self.locationManager.location
-        let time:NSDate = self.locationManager.location.timestamp
-        let geoCoder:CLGeocoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) -> Void in
-            let placeMark:CLPlacemark = placeMarks[0] as CLPlacemark
-            self.addARecordInDataBase(time, spot: placeMark.name)
-        })
+        let location:CLLocation? = self.locationManager.location
+        if location != nil{
+            let time:NSDate = self.locationManager.location.timestamp
+            let geoCoder:CLGeocoder = CLGeocoder()
+            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) -> Void in
+                let placeMark:CLPlacemark = placeMarks[0] as CLPlacemark
+                self.addARecordInDataBase(time, spot: placeMark.name)
+            })
+        }else{
+            let av_inputLocation:UIAlertView = UIAlertView(title: "输入地点", message: "定位不可用，请手动输入地点", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+            av_inputLocation.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            av_inputLocation.show()
+        }
         
     }
     
@@ -147,7 +152,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     
-    //TODO:自定义封面图片
     // show the image
     func showImage() {
         let documentPath:NSString = NSHomeDirectory().stringByAppendingPathComponent("Documents")
@@ -237,6 +241,17 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
             
         }
     }
+    
+    
+    // AlertView Delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1{
+            let tf:UITextField = alertView.textFieldAtIndex(0)!
+            let time:NSDate = NSDate()
+            self.addARecordInDataBase(time, spot: tf.text)
+        }
+    }
+    
     
     //TODO:没有数据是，提示用户点击加号按钮
 

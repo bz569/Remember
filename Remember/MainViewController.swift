@@ -206,10 +206,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //delete an event
     func deleteEvent(event:Event){
+        
+        //delete event image
+        let docuPath:NSString = NSHomeDirectory().stringByAppendingPathComponent("Documents")
+        let imageFolderPath = docuPath + "/images"
+        let fileManager:NSFileManager = NSFileManager.defaultManager()
+        let imageName:NSString = event.title + ".png"
+        let imagePath:NSString = imageFolderPath + "/" + imageName
+        
+        if fileManager.fileExistsAtPath(imagePath){
+            fileManager.removeItemAtPath(imagePath, error: nil)
+        }
+
+        //deleteEvent for CoreData
         let context = self.appDelegate.managedObjectContext
         context?.deleteObject(event)
         var error:NSError? = nil
         context?.save(&error)
+        
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

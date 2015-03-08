@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     @IBOutlet weak var iv_image: UIImageView!
     @IBOutlet weak var l_title: UILabel!
     @IBOutlet weak var l_hintToChangImg: UILabel!
+    @IBOutlet weak var blurBG: UIImageView!
     
     var event:Event!
     var locationManager:CLLocationManager!
@@ -61,6 +62,9 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         //set title
         self.l_title.text = self.event.title
         
+        //set blurBG to hint if no details
+        self.setBlurBG()
+        
                 
     }
 
@@ -78,6 +82,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         }else{
             let av_inputLocation:UIAlertView = UIAlertView(title: "输入地点", message: "定位不可用，请手动输入地点", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
             av_inputLocation.alertViewStyle = UIAlertViewStyle.PlainTextInput
+            let tf:UITextField = av_inputLocation.textFieldAtIndex(0)!
+            tf.placeholder = "地点"
             av_inputLocation.show()
         }
         
@@ -110,10 +116,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         self.fetchDetails()
         self.tv_details.endUpdates()
         
-        
-        
-        
-        
+        //hide blurBG
+        self.setBlurBG()
     }
     
     //table view datasource
@@ -122,7 +126,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+                
         let cell:DetailTableViewCell = self.tv_details.dequeueReusableCellWithIdentifier("detailCell", forIndexPath: indexPath) as DetailTableViewCell
         
         let detail:Detail = self.details[indexPath.row]
@@ -253,8 +257,14 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     
-    //TODO:没有数据是，提示用户点击加号按钮
-
+    //when there is no detail record, set the background to be blur to notice user to touck plus button
+    func setBlurBG() {
+        if self.details.count == 0 {
+            self.blurBG.hidden = false
+        }else{
+            self.blurBG.hidden = true
+        }
+    }
     
 }
 

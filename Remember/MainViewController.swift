@@ -11,6 +11,7 @@ import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddEventDelegate, UIAlertViewDelegate{
 
+    @IBOutlet weak var v_emptyHint: UIView!
     @IBOutlet var tv_events: UITableView!
     
     var hasAddLine:Int = 0
@@ -27,6 +28,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tv_events.tableFooterView = UIView()
         
         self.fetchEventsFromDB()
+        
+        self.setEmptyHint()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,7 +89,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 image = UIImage(named: "colorful-triangles-background")!
             }
             cell.iv_icon.image = image
-
+            
             
             return cell
         }else{
@@ -94,7 +97,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.delegate = self
             return cell
         }
-        
     }
     
     //Tableview Delegate
@@ -140,6 +142,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.events.removeAtIndex(self.indexToBeDeleted)
             tv_events.endUpdates()
             
+            self.setEmptyHint()
+            
         }
     }
     
@@ -160,6 +164,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //fetch data again
         self.fetchEventsFromDB()
         self.tv_events.reloadData()
+        
+        self.setEmptyHint()
     }
     
     func cancclToAddEvent() {
@@ -217,6 +223,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //TODO:没有数据时，提示用户点击加号新建
+    func setEmptyHint() {
+        if self.events.count == 0 {
+            self.v_emptyHint.hidden = false
+        }else {
+            self.v_emptyHint.hidden = true
+        }
+    }
 
 }
 

@@ -236,7 +236,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    //TODO:没有数据时，提示用户点击加号新建
     func setEmptyHint() {
         if self.events.count == 0 {
             self.v_emptyHint.hidden = false

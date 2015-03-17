@@ -265,7 +265,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
             self.blurBG.hidden = true
         }
     }
-    
 }
 
 

@@ -19,10 +19,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var indexToBeDeleted = -1
     var selectedIndex = -1
+    var iv_name:UIImageView = UIImageView(frame: CGRectMake(30, 7, 30, 30))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         tv_events.delegate = self
         tv_events.dataSource = self
         tv_events.tableFooterView = UIView()
@@ -30,10 +32,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.fetchEventsFromDB()
         
         self.setEmptyHint()
+        
+        self.customizeNaviBar()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = ""
+        
+        self.iv_name.hidden = false
+        
         self.fetchEventsFromDB()
         self.tv_events.reloadData()
     }
@@ -45,7 +53,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.cancclToAddEvent()
         }
     }
-
+    
     //Add a row in table to add event
     func toAddEvent() {
         tv_events.beginUpdates()
@@ -127,6 +135,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        self.selectedIndex = indexPath.row
         self.performSegueWithIdentifier("segueToDetailView", sender: self.tv_events.cellForRowAtIndexPath(indexPath))
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        self.iv_name.hidden = true
+        self.title = "返回"
     }
     
     
@@ -243,6 +253,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.v_emptyHint.hidden = true
         }
     }
+    
+    // customize navigation bar
+    func customizeNaviBar() {
+        self.iv_name.image = UIImage(named: "name_cn")
+        self.iv_name.tag = 1
+        self.navigationController?.navigationBar.addSubview(iv_name)
+    }
+    
+    //TODO name, localization
 
 }
 

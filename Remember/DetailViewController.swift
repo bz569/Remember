@@ -10,13 +10,14 @@ import UIKit
 import CoreLocation
 import CoreData
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate{
+class DetailViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate{
     
     @IBOutlet weak var tv_details: UITableView!
     @IBOutlet weak var iv_image: UIImageView!
     @IBOutlet weak var l_title: UILabel!
     @IBOutlet weak var l_hintToChangImg: UILabel!
     @IBOutlet weak var blurBG: UIImageView!
+    var tf_inputLocation: UITextField?
     
     var event:Event!
     var locationManager:CLLocationManager!
@@ -80,13 +81,24 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
                 self.addARecordInDataBase(time, spot: placeMark.name)
             })
         }else{
-            let av_inputLocation:UIAlertView = UIAlertView(title: "输入地点", message: "定位不可用，请手动输入地点", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-            av_inputLocation.alertViewStyle = UIAlertViewStyle.PlainTextInput
-            let tf:UITextField = av_inputLocation.textFieldAtIndex(0)!
-            tf.placeholder = "地点"
-            av_inputLocation.show()
+//            let av_inputLocation:UIAlertView = UIAlertView(title: "输入地点", message: "定位不可用，请手动输入地点", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//            av_inputLocation.alertViewStyle = UIAlertViewStyle.PlainTextInput
+//            let tf:UITextField = av_inputLocation.textFieldAtIndex(0)!
+//            tf.placeholder = "地点"
+//            av_inputLocation.show()
             
-//            let alert = SCLAlertView()
+            let alert = SCLAlertView()
+            self.tf_inputLocation = alert.addTextField(title:"地点")
+            self.tf_inputLocation?.delegate = self
+            alert.addButton("确定", action: {
+                let time:NSDate = NSDate()
+                
+                if self.tf_inputLocation!.text != ""{
+                    self.addARecordInDataBase(time, spot: self.tf_inputLocation!.text)
+                }
+            })
+            alert.showEdit("输入", subTitle: "定位不可用，请手动输入地点", closeButtonTitle: "取消", duration: NSTimeInterval.infinity)
+            
             
         }
         
@@ -268,6 +280,19 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         }else{
             self.blurBG.hidden = true
         }
+    }
+    
+    //hide the keyboard
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        if self.tf_inputLocation != nil {
+            self.tf_inputLocation?.resignFirstResponder()
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 
 }

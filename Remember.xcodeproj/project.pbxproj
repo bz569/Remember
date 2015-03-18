@@ -23,6 +23,7 @@
 		B2E85AD71A0C27240081FC8E /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AD61A0C27240081FC8E /* EventTableViewCell.swift */; };
 		B2E85AE61A0C43EC0081FC8E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AE51A0C43EC0081FC8E /* Event.swift */; };
 		B2E85AF91A0D70D50081FC8E /* AddEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AF81A0D70D50081FC8E /* AddEventTableViewCell.swift */; };
+		B2F0D8731ABA345200A1D80F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F0D8721ABA345200A1D80F /* UIColorExtension.swift */; };
 		B2F502031A111F3000070085 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F502021A111F3000070085 /* DateUtil.swift */; };
 		B2F502061A11238500070085 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F502051A11238500070085 /* ColorUtil.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		B2E85AD61A0C27240081FC8E /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		B2E85AE51A0C43EC0081FC8E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B2E85AF81A0D70D50081FC8E /* AddEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventTableViewCell.swift; sourceTree = "<group>"; };
+		B2F0D8721ABA345200A1D80F /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B2F502021A111F3000070085 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		B2F502041A11203000070085 /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; };
 		B2F502051A11238500070085 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				B2F502021A111F3000070085 /* DateUtil.swift */,
 				B2F502051A11238500070085 /* ColorUtil.swift */,
 				B2F502041A11203000070085 /* test.playground */,
+				B2F0D8721ABA345200A1D80F /* UIColorExtension.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				B28775841A0C1BD100940C77 /* MainViewController.swift in Sources */,
 				B28775821A0C1BD100940C77 /* Remember.xcdatamodeld in Sources */,
 				B287757F1A0C1BD100940C77 /* AppDelegate.swift in Sources */,
+				B2F0D8731ABA345200A1D80F /* UIColorExtension.swift in Sources */,
 				B2E85AE61A0C43EC0081FC8E /* Event.swift in Sources */,
 				B22805B41A0D895F0085D02C /* DetailViewController.swift in Sources */,
 				B22805BC1A0FF7860085D02C /* Event+CoreData.swift in Sources */,

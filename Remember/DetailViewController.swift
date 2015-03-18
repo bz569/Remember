@@ -85,6 +85,9 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
             let tf:UITextField = av_inputLocation.textFieldAtIndex(0)!
             tf.placeholder = "地点"
             av_inputLocation.show()
+            
+//            let alert = SCLAlertView()
+            
         }
         
     }
@@ -133,7 +136,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         cell.l_number.text = detail.number.stringValue
         cell.l_time.text = DateUtil.getDateStringFromNSDate(detail.time)
         cell.l_event.text = "于 " + detail.spot
-        cell.v_iconBackground.backgroundColor = ColorUtil.randomColor()
+        let colorUtil = ColorUtil()
+        cell.v_iconBackground.backgroundColor = colorUtil.randomColor()
         
         return cell
     }
@@ -265,6 +269,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
             self.blurBG.hidden = true
         }
     }
+
 }
 
 

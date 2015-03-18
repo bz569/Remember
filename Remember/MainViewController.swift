@@ -127,8 +127,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         //删除一条记录
         self.indexToBeDeleted = indexPath.row
-        let alert:UIAlertView = UIAlertView(title: "", message: "确定要删除这条记录吗？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-        alert.show()
+//        let alert:UIAlertView = UIAlertView(title: "", message: "确定要删除这条记录吗？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//        alert.show()
+        let alert = SCLAlertView()
+        alert.addButton("确定", target: self, selector: Selector("toDeleteEvent"))
+        alert.showWarning("确定删除", subTitle: "确定要删除这条记录吗？", closeButtonTitle: "取消", duration: NSTimeInterval.infinity)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -139,24 +142,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "返回"
     }
     
-    
     //alertview Delegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1 {
-            let eventToBeDel:Event = self.events[indexToBeDeleted]
-            self.deleteEvent(eventToBeDel)
-            
-            tv_events.beginUpdates()
-            let rowToRemove:[NSIndexPath] = [NSIndexPath(forRow: self.indexToBeDeleted, inSection: 0)]
-            self.tv_events.deleteRowsAtIndexPaths(rowToRemove, withRowAnimation: UITableViewRowAnimation.Automatic)
-            self.events.removeAtIndex(self.indexToBeDeleted)
-            tv_events.endUpdates()
-            
-            self.setEmptyHint()
-            
-        }
-    }
-    
+//    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+//        if buttonIndex == 1 {
+//            let eventToBeDel:Event = self.events[indexToBeDeleted]
+//            self.deleteEvent(eventToBeDel)
+//            
+//            tv_events.beginUpdates()
+//            let rowToRemove:[NSIndexPath] = [NSIndexPath(forRow: self.indexToBeDeleted, inSection: 0)]
+//            self.tv_events.deleteRowsAtIndexPaths(rowToRemove, withRowAnimation: UITableViewRowAnimation.Automatic)
+//            self.events.removeAtIndex(self.indexToBeDeleted)
+//            tv_events.endUpdates()
+//            
+//            self.setEmptyHint()
+//            
+//        }
+//    }
+//    
     
     //add event protocol
     func confirmToAddEvent(title: String) {
@@ -215,6 +217,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //delete an event
+    
+    func toDeleteEvent() {
+        let eventToBeDel:Event = self.events[indexToBeDeleted]
+        self.deleteEvent(eventToBeDel)
+        
+        tv_events.beginUpdates()
+        let rowToRemove:[NSIndexPath] = [NSIndexPath(forRow: self.indexToBeDeleted, inSection: 0)]
+        self.tv_events.deleteRowsAtIndexPaths(rowToRemove, withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.events.removeAtIndex(self.indexToBeDeleted)
+        tv_events.endUpdates()
+        
+        self.setEmptyHint()
+        
+    }
+    
     func deleteEvent(event:Event){
         
         //delete event image

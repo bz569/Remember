@@ -19,6 +19,7 @@
 		B287758C1A0C1BD100940C77 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B287758A1A0C1BD100940C77 /* LaunchScreen.xib */; };
 		B28775981A0C1BD200940C77 /* RememberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28775971A0C1BD200940C77 /* RememberTests.swift */; };
 		B2A40E3B1A0D793C00A1656C /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A40E3A1A0D793C00A1656C /* Detail.swift */; };
+		B2C30A691ABA242E0051561C /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C30A681ABA242E0051561C /* SCLAlertView.swift */; };
 		B2E85AD71A0C27240081FC8E /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AD61A0C27240081FC8E /* EventTableViewCell.swift */; };
 		B2E85AE61A0C43EC0081FC8E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AE51A0C43EC0081FC8E /* Event.swift */; };
 		B2E85AF91A0D70D50081FC8E /* AddEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E85AF81A0D70D50081FC8E /* AddEventTableViewCell.swift */; };
@@ -53,6 +54,7 @@
 		B28775961A0C1BD200940C77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B28775971A0C1BD200940C77 /* RememberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberTests.swift; sourceTree = "<group>"; };
 		B2A40E3A1A0D793C00A1656C /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		B2C30A681ABA242E0051561C /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		B2E85AD61A0C27240081FC8E /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		B2E85AE51A0C43EC0081FC8E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B2E85AF81A0D70D50081FC8E /* AddEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		B287757C1A0C1BD100940C77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2C30A681ABA242E0051561C /* SCLAlertView.swift */,
 				B287757E1A0C1BD100940C77 /* AppDelegate.swift */,
 				B287757D1A0C1BD100940C77 /* Info.plist */,
 			);
@@ -293,6 +296,7 @@
 				B2E85AE61A0C43EC0081FC8E /* Event.swift in Sources */,
 				B22805B41A0D895F0085D02C /* DetailViewController.swift in Sources */,
 				B22805BC1A0FF7860085D02C /* Event+CoreData.swift in Sources */,
+				B2C30A691ABA242E0051561C /* SCLAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

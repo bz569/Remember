@@ -105,16 +105,23 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
 //            av_inputLocation.show()
             
             let alert = SCLAlertView()
-            self.tf_inputLocation = alert.addTextField(title:"地点")
+            let placeHolderStr = NSLocalizedString("ENTER_LOCATION", comment: "Enter location..")
+            self.tf_inputLocation = alert.addTextField(title:placeHolderStr)
             self.tf_inputLocation?.delegate = self
-            alert.addButton("确定", action: {
+            
+            let confirmStr = NSLocalizedString("CONFIRM", comment: "Confirm")
+            alert.addButton(confirmStr, action: {
                 let time:NSDate = NSDate()
                 
                 if self.tf_inputLocation!.text != ""{
                     self.addARecordInDataBase(time, spot: self.tf_inputLocation!.text)
                 }
             })
-            alert.showEdit("输入", subTitle: "定位不可用，请手动输入地点", closeButtonTitle: "取消", duration: NSTimeInterval.infinity)
+            
+            let titleStr = NSLocalizedString("LOCATION", comment: "Location")
+            let subTitleStr = NSLocalizedString("ENTER_LOCATION_HINT", comment: "Location is not valid, please enter it")
+            let cancelStr = NSLocalizedString("CANCEL", comment: "Cancel")
+            alert.showEdit(titleStr, subTitle: subTitleStr, closeButtonTitle: cancelStr, duration: NSTimeInterval.infinity)
             
             
         }
@@ -164,7 +171,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         let detail:Detail = self.details[indexPath.row]
         cell.l_number.text = detail.number.stringValue
         cell.l_time.text = DateUtil.getDateStringFromNSDate(detail.time)
-        cell.l_event.text = "于 " + detail.spot
+        let atStr = NSLocalizedString("AT", comment: "At")
+        cell.l_event.text = atStr + detail.spot
         let colorUtil = ColorUtil()
         cell.v_iconBackground.backgroundColor = colorUtil.randomColor()
         
@@ -206,7 +214,13 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     
     func changeImage(){
-        let as_selectIamge:UIActionSheet = UIActionSheet(title: "更换背景图片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "从手机相册选择")
+        
+        let titleStr = NSLocalizedString("CHANGE_IMAGE", comment: "Change image")
+        let cameraStr = NSLocalizedString("CAMERA", comment: "From camera")
+        let photoLibStr = NSLocalizedString("PHOTO_LIBRARY", comment: "From photo library")
+        let cancelStr = NSLocalizedString("CANCEL", comment: "Cancel")
+
+        let as_selectIamge:UIActionSheet = UIActionSheet(title: titleStr, delegate: self, cancelButtonTitle: cancelStr, destructiveButtonTitle: nil, otherButtonTitles: cameraStr, photoLibStr)
         
         as_selectIamge.showInView(self.view)
     }

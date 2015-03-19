@@ -11,6 +11,7 @@
 		B22805B61A0FEEF70085D02C /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22805B51A0FEEF70085D02C /* DetailTableViewCell.swift */; };
 		B22805BC1A0FF7860085D02C /* Event+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22805BB1A0FF7860085D02C /* Event+CoreData.swift */; };
 		B22805BE1A1006B90085D02C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22805BD1A1006B90085D02C /* CoreLocation.framework */; };
+		B22A620A1ABB205000FEBCCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B22A620C1ABB205000FEBCCD /* Localizable.strings */; };
 		B287757F1A0C1BD100940C77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B287757E1A0C1BD100940C77 /* AppDelegate.swift */; };
 		B28775821A0C1BD100940C77 /* Remember.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B28775801A0C1BD100940C77 /* Remember.xcdatamodeld */; };
 		B28775841A0C1BD100940C77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28775831A0C1BD100940C77 /* MainViewController.swift */; };
@@ -43,6 +44,9 @@
 		B22805B51A0FEEF70085D02C /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		B22805BB1A0FF7860085D02C /* Event+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreData.swift"; sourceTree = "<group>"; };
 		B22805BD1A1006B90085D02C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B22A62071ABB1E2600FEBCCD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		B22A620B1ABB205000FEBCCD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B22A620D1ABB205100FEBCCD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B28775791A0C1BD100940C77 /* Remember.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remember.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B287757D1A0C1BD100940C77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B287757E1A0C1BD100940C77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		B287757C1A0C1BD100940C77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B22A620C1ABB205000FEBCCD /* Localizable.strings */,
 				B2C30A681ABA242E0051561C /* SCLAlertView.swift */,
 				B287757E1A0C1BD100940C77 /* AppDelegate.swift */,
 				B287757D1A0C1BD100940C77 /* Info.plist */,
@@ -268,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B28775871A0C1BD100940C77 /* Main.storyboard in Resources */,
+				B22A620A1ABB205000FEBCCD /* Localizable.strings in Resources */,
 				B287758C1A0C1BD100940C77 /* LaunchScreen.xib in Resources */,
 				B28775891A0C1BD100940C77 /* Images.xcassets in Resources */,
 			);
@@ -323,10 +329,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B22A620C1ABB205000FEBCCD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B22A620B1ABB205000FEBCCD /* zh-Hans */,
+				B22A620D1ABB205100FEBCCD /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B28775851A0C1BD100940C77 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B28775861A0C1BD100940C77 /* Base */,
+				B22A62071ABB1E2600FEBCCD /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

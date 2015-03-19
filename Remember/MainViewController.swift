@@ -80,7 +80,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if test != nil   {
                 let lastTimeStr:String = DateUtil.getDateStringFromNSDate2(event.lastTime)
                 let lastSpotStr:String = event.lastSpot
-                cell.l_info.text = "最后一次 " + lastTimeStr + " 于" + lastSpotStr
+                let lastStr = NSLocalizedString("LAST_TIME",comment:"Last time ")
+                let atStr = NSLocalizedString("AT", comment: "at")
+                cell.l_info.text = lastStr + lastTimeStr + atStr + lastSpotStr
             }else{
                 cell.l_info.text = ""
             }
@@ -130,8 +132,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        let alert:UIAlertView = UIAlertView(title: "", message: "确定要删除这条记录吗？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
 //        alert.show()
         let alert = SCLAlertView()
-        alert.addButton("确定", target: self, selector: Selector("toDeleteEvent"))
-        alert.showWarning("确定删除", subTitle: "确定要删除这条记录吗？", closeButtonTitle: "取消", duration: NSTimeInterval.infinity)
+        let confirmStr = NSLocalizedString("DELETE", comment: "Delete")
+        alert.addButton(confirmStr, target: self, selector: Selector("toDeleteEvent"))
+        let titleStr = NSLocalizedString("DELETION_CONFIRM_TITLE", comment: "Warning!")
+        let deleteConfirmStr = NSLocalizedString("DELETION_CONFIRM",comment: "Confirm to delete this event？")
+        let cancelStr = NSLocalizedString("CANCEL",comment: "Cancel")
+        alert.showWarning(titleStr, subTitle: deleteConfirmStr, closeButtonTitle: cancelStr, duration: NSTimeInterval.infinity)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -139,7 +145,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.performSegueWithIdentifier("segueToDetailView", sender: self.tv_events.cellForRowAtIndexPath(indexPath))
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         self.iv_name.hidden = true
-        self.title = "返回"
+        let backStr = NSLocalizedString("BACK", comment: "Back")
+        self.title = backStr
     }
     
     //alertview Delegate

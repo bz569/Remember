@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Remember
+
+  Created by ZhangBoxuan on 3/19/15.
+  Copyright (c) 2015 ZhangBoxuan. All rights reserved.
+*/
+
+
+CONFIRM = "Confirm";
+CANCEL = "Cancel";
+BACK = "Back";
+
+//Main View
+LAST_TIME = "Last time ";
+AT = " At ";
+
+DELETION_CONFIRM_TITLE = "Warning!";
+DELETION_CONFIRM = "Confirm to delete this event？";
+DELETE = "DELETE";
+
+//Detail View
+
+LOCATION = "Location";
+ENTER_LOCATION = "Enter location..";
+ENTER_LOCATION_HINT = "Location is not valid, please enter it";
+
+CHANGE_IMAGE = "Change image";
+CAMERA = "From camera";
+PHOTO_LIBRARY = "From photo library";
+
+//Date Util
+
+DATE_FORMAT_1 = "MM/dd/yyyy";
+DATE_FORMAT_2 = "MM/dd/yyyy";

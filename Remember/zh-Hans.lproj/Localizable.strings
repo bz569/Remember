@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Remember
+
+  Created by ZhangBoxuan on 3/19/15.
+  Copyright (c) 2015 ZhangBoxuan. All rights reserved.
+*/
+
+CONFIRM = "确定";
+CANCEL = "取消";
+BACK = "返回";
+
+
+//Main View
+
+LAST_TIME = "最后一次 ";
+AT = " 于 ";
+
+DELETION_CONFIRM_TITLE = "小心！";
+DELETION_CONFIRM = "确定要删除这条记录吗？";
+DELETE = "删除";
+
+//Detail View
+
+LOCATION = "地点";
+ENTER_LOCATION = "输入地点..";
+ENTER_LOCATION_HINT = "定位不可用，请手动输入地点";
+
+CHANGE_IMAGE = "更换背景图片";
+CAMERA = "拍照";
+PHOTO_LIBRARY = "从手机相册选择";
+
+//Date Util
+
+DATE_FORMAT_1 = "yyyy-MM-dd";
+DATE_FORMAT_2 = "yyyy年MM月dd日";

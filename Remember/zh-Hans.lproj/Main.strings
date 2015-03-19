@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "和XXX一起去看电影"; ObjectID = "216-Ow-HAv"; */
+"216-Ow-HAv.text" = "和XXX一起去看电影";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "DW9-Qg-jHD"; */
+"DW9-Qg-jHD.text" = "5";
+
+/* Class = "UILabel"; text = "最后一次 2014-10-10 于 xxx"; ObjectID = "Ik2-si-jl3"; */
+"Ik2-si-jl3.text" = "最后一次 2014-10-10 于 xxx";
+
+/* Class = "UILabel"; text = "8"; ObjectID = "ROv-Fj-Ycj"; */
+"ROv-Fj-Ycj.text" = "8";
+
+/* Class = "UITextField"; text = "请点击右上角加号添加"; ObjectID = "Rff-bl-dDn"; */
+"Rff-bl-dDn.text" = "请点击右上角加号添加";
+
+/* Class = "UILabel"; text = "2014年10月10日"; ObjectID = "U1Y-BH-cE4"; */
+"U1Y-BH-cE4.text" = "2014年10月10日";
+
+/* Class = "UILabel"; text = "XXX与XXX在一起"; ObjectID = "UtC-QI-XBO"; */
+"UtC-QI-XBO.text" = "XXX与XXX在一起";
+
+/* Class = "UITextField"; placeholder = "请输入事件名..."; ObjectID = "dIQ-EG-gmt"; */
+"dIQ-EG-gmt.placeholder" = "请输入事件名...";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "e3i-W3-4ZU"; */
+"e3i-W3-4ZU.text" = "Total";
+
+/* Class = "UILabel"; text = "和XXX一起去看电影"; ObjectID = "mhc-MS-B4v"; */
+"mhc-MS-B4v.text" = "和XXX一起去看电影";
+
+/* Class = "UILabel"; text = "点击更换图片"; ObjectID = "s0J-5g-PKO"; */
+"s0J-5g-PKO.text" = "点击更换图片";

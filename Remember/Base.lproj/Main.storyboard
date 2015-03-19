@@ -283,6 +283,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blurBG" translatesAutoresizingMaskIntoConstraints="NO" id="zVd-KM-6BW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击更换图片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-5g-PKO">
+                                <rect key="frame" x="103" y="149" width="114" height="149"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTp-mH-f7G" userLabel="plus button">
                                 <rect key="frame" x="234" y="354" width="60" height="60"/>
                                 <constraints>
@@ -296,12 +302,6 @@
                                     <action selector="onTouchPlusButton:" destination="7ZD-zd-TfO" eventType="touchUpInside" id="aZg-cW-zSj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击更换图片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-5g-PKO">
-                                <rect key="frame" x="103" y="149" width="114" height="149"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="19"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -329,6 +329,7 @@
                     <navigationItem key="navigationItem" id="Lmd-wq-4Zm"/>
                     <connections>
                         <outlet property="blurBG" destination="zVd-KM-6BW" id="Lhq-Is-SnJ"/>
+                        <outlet property="btn_plus" destination="hTp-mH-f7G" id="XZ5-AA-8zS"/>
                         <outlet property="iv_image" destination="7T3-L5-Gjj" id="AHi-mh-u28"/>
                         <outlet property="l_hintToChangImg" destination="s0J-5g-PKO" id="TjJ-WP-Ci0"/>
                         <outlet property="l_title" destination="mhc-MS-B4v" id="uDb-BU-ryO"/>

@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
     @IBOutlet weak var l_title: UILabel!
     @IBOutlet weak var l_hintToChangImg: UILabel!
     @IBOutlet weak var blurBG: UIImageView!
+    @IBOutlet weak var btn_plus: UIButton!
+    
     var tf_inputLocation: UITextField?
     
     var event:Event!
@@ -66,7 +68,22 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, UITable
         //set blurBG to hint if no details
         self.setBlurBG()
         
-                
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //set animation for plus button
+        self.btn_plus.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        
+        UIView.animateWithDuration(2.0,
+            delay: 0,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 6.0,
+            options: UIViewAnimationOptions.AllowUserInteraction,
+            animations: {
+                self.btn_plus.transform = CGAffineTransformIdentity
+            }, completion: nil)
     }
 
     @IBAction func onTouchPlusButton(sender: UIButton) {
